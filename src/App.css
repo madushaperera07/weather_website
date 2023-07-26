@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins&family=Quicksand:wght@500&family=REM&family=Roboto&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.weather_header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input_containe{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+}
+.input_containe h6{
+  font-size: 20px;
+  font-weight: 500;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.input_one{
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left_containe{
+  width: 700px;
+  height: 550px;
+  background-image: url("./images/img02.jpg");
+  background-size: cover;
+  border-radius: 30px;
+  margin-left: 100px;
+}
+
+.right_containe{
+  width: 500px;
+  height: 600px;
+  margin-left: 50px;
+  margin-top: 90px;
+}
+
+.line_containe{
+  background-color: white;
+  width: 100px;
+  height: 4px;
+  margin-left: 120px;
+  margin-bottom: 20px ;
+  margin-top: 10px ;
+  border-radius: 1.5px;
+}
+
+.header_containe{
+  font-weight: 700;
+  margin-left: 30px;
+  margin-top: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.location_containe{
+  width: 180px;
+  height: 60px;
+  background-color: transparent;
+  color: white;
+  margin-right: 30px;
+  margin-top: 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-around;
+  border: 1.5px white solid;
+  border-radius: 10px;
+}
+
+.input_location{
+  display: flex;
+  justify-content: center;
+}
+
+.input_location input{
+  background: transparent;
+  width: 300px;
+}
+
+.input_location button{
+  cursor: pointer;
+}
+
+
+.input_containe h6{
+  font-family: 'REM', sans-serif;
+}
+
+.loc_icon{
+  margin-top: 20px;
+}
+
+.weater_containe{
+  width: 400px;
+  height: 472px;
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+.right_containe h2{
+  font-weight: 700;
+  margin-bottom: 20px;
 }
