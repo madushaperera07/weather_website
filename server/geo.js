@@ -15,11 +15,14 @@ const Geo = (location) =>{
     })
 }
 
-Geo("rajagiriya").then((data)=>{
+
+module.exports = Geo
+
+/* Geo("rajagiriya").then((data)=>{
     console.log(data.lat)
     console.log(data.lon)
     console.log(data.country)
     console.log(data.city)
 }).catch((err)=>{
     console.log(err.error)
-})
+}) */
