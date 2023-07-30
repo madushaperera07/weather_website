@@ -1,21 +1,34 @@
 import "./App.css";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [val, setVal] = useState("");
 
+  const [backend, setbackend] = useState([]);
+
   async function submit(e) {
     e.preventDefault();
 
-    try {
-      await axios.post("http://localhost:5000/", {
+    await axios
+      .post("http://localhost:5000/api", {
         val,
+      })
+      .then((response) => {
+        setbackend({
+          weather: response.data.weather,
+          description: response.data.description,
+          country: response.data.country,
+          city: response.data.city,
+        });
+      })
+      .catch((error) => {
+        setbackend({
+          error: error.err.error,
+        });
       });
-    } catch (e) {
-      console.log(e);
-    }
   }
+
   return (
     <>
       <section class="App">
@@ -27,9 +40,14 @@ function App() {
             <div class="location_containe">
               <i class="bi bi-geo-alt-fill loc_icon"></i>
               <div>
-                <p>Current Location</p>
-
-                <p>country , city</p>
+                {
+                  <div>
+                    <p>Current Location</p>
+                    <p>
+                      {backend.country} , {backend.city}
+                    </p>
+                  </div>
+                }
               </div>
             </div>
           </div>
@@ -61,7 +79,17 @@ function App() {
 
         <div class="right_containe">
           <h2>Today</h2>
-          <div class="weater_containe"></div>
+          <div class="weater_containe">
+            {
+              <div>
+                <h4>{backend.weather}</h4>
+                <p>{backend.description}</p>
+                <p>{backend.country}</p>
+                <p>{backend.city}</p>
+                <p>{backend.error}</p>
+              </div>
+            }
+          </div>
         </div>
       </section>
     </>
