@@ -1,37 +1,38 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
 const cros = require("cors");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const Weather = require("./weather");
 const Geo = require("./geo");
 
 app.use(cros());
 
-const Fulldata = (location) => {
-  Geo(location)
+app.get("/ap", (res, req) => {});
+
+app.post("/api", cros(), async (req, res) => {
+  const { val } = req.body;
+  Geo(val)
     .then((data) => {
       return Weather(data.lat, data.lon, data.country, data.city);
     })
     .then((data) => {
-      console.log(data);
+      res.json({
+        weather: data.weather,
+        description: data.description,
+        country: data.country,
+        city: data.city,
+      });
     })
     .catch((err) => {
-      console.log(err.error);
+      res.json({
+        error: err.error,
+      });
     });
-};
-
-app.post("/", async (req, res) => {
-  const { val } = req.body;
-
-  return Fulldata(val);
-});
-
-app.get("/", async (req, res) => {
-  res.send({ name: "madush" });
 });
 
 app.listen(5000, () => {
