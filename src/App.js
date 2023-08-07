@@ -1,11 +1,12 @@
 import "./App.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   const [val, setVal] = useState("");
 
   const [backend, setbackend] = useState([]);
+  const [backendDate, setbackendDate] = useState("");
 
   async function submit(e) {
     e.preventDefault();
@@ -18,14 +19,27 @@ function App() {
         setbackend({
           weather: response.data.weather,
           description: response.data.description,
+          main: response.data.main,
           country: response.data.country,
           city: response.data.city,
+          icon: response.data.icon,
         });
       })
       .catch((error) => {
         setbackend({
-          error: error.err.error,
+          error: "Unable to find location",
         });
+      });
+
+    await axios
+      .get("http://localhost:5000/api")
+      .then((response) => {
+        setbackendDate({
+          date: response.data.currentDate,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -41,8 +55,8 @@ function App() {
               <i class="bi bi-geo-alt-fill loc_icon"></i>
               <div>
                 {
-                  <div>
-                    <p>Current Location</p>
+                  <div class="search_location">
+                    <p class="current_location">Current Location</p>
                     <p>
                       {backend.country} , {backend.city}
                     </p>
@@ -60,15 +74,20 @@ function App() {
                   <div class="line_containe"></div>
 
                   <div class="input_location">
-                    <form action="POST">
+                    <form>
                       <input
+                        class="input_container"
                         name="text"
                         onChange={(e) => {
                           setVal(e.target.value);
                         }}
                         placeholder="Enter Location"
                       />
-                      <input type="submit" onClick={submit} class="button" />
+                      <i
+                        type="submit"
+                        onClick={submit}
+                        class="bi bi-search button"
+                      ></i>
                     </form>
                   </div>
                 </div>
@@ -81,12 +100,11 @@ function App() {
           <h2>Today</h2>
           <div class="weater_containe">
             {
-              <div>
-                <h4>{backend.weather}</h4>
-                <p>{backend.description}</p>
-                <p>{backend.country}</p>
-                <p>{backend.city}</p>
-                <p>{backend.error}</p>
+              <div class="search_container">
+                <h1>{Math.round(backend.weather)} </h1>
+                <h3 class="main_container">{backend.main}</h3>
+                <h6> {backend.description}</h6>
+                <p>{backendDate.date}</p>
               </div>
             }
           </div>

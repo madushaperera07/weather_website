@@ -49,7 +49,7 @@
   background-color: white;
   width: 100px;
   height: 4px;
-  margin-left: 120px;
+  margin-left: 110px;
   margin-bottom: 20px ;
   margin-top: 10px ;
   border-radius: 1.5px;
@@ -82,13 +82,16 @@
   justify-content: center;
 }
 
-.input_location input{
+.input_location .input_container{
   background: transparent;
   width: 300px;
 }
 
-.input_location button{
+.input_location .button{
   cursor: pointer;
+  width: 25px;
+  height: auto;
+  padding-left: 7px;
 }
 
 
@@ -110,4 +113,27 @@
 .right_containe h2{
   font-weight: 700;
   margin-bottom: 20px;
+}
+
+.current_location{
+  margin-top: 10px;
+}
+
+.search_location p{
+  margin-bottom: 1rem;
+}
+
+
+.weater_containe{
+  display: flex;
+  justify-content: center;
+}
+
+.weater_containe h1{
+  font-weight: 700;
+  margin-top: 30px;
+}
+
+.weater_containe .main_container{
+  font-weight: 600;
 }
