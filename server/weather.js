@@ -11,8 +11,10 @@ const Weather = (lat, lon, country, city) => {
         resolve({
           weather: res.data.main.temp,
           description: res.data.weather[0].description,
+          main: res.data.weather[0].main,
           country: country,
           city: city,
+          icon: res.data.weather[0].icon,
         });
       })
       .catch((err) => {

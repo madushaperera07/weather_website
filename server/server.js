@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 
-const cros = require("cors");
+const cors = require("cors");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -10,11 +10,14 @@ app.use(bodyParser.json());
 const Weather = require("./weather");
 const Geo = require("./geo");
 
-app.use(cros());
+app.use(cors());
 
-app.get("/ap", (res, req) => {});
+app.get("/api", (req, res) => {
+  const d = new Date();
+  res.send({ currentDate: d.toDateString() });
+});
 
-app.post("/api", cros(), async (req, res) => {
+app.post("/api", cors(), async (req, res) => {
   const { val } = req.body;
   Geo(val)
     .then((data) => {
@@ -24,8 +27,10 @@ app.post("/api", cros(), async (req, res) => {
       res.json({
         weather: data.weather,
         description: data.description,
+        main: data.main,
         country: data.country,
         city: data.city,
+        icon: data.icon,
       });
     })
     .catch((err) => {
