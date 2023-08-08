@@ -23,6 +23,10 @@ function App() {
           country: response.data.country,
           city: response.data.city,
           icon: response.data.icon,
+          max_t: response.data.max_t,
+          min_t: response.data.min_t,
+          pressure: response.data.pressure,
+          humidity: response.data.humidity,
         });
       })
       .catch((error) => {
@@ -98,15 +102,47 @@ function App() {
 
         <div class="right_containe">
           <h2>Today</h2>
+
           <div class="weater_containe">
-            {
-              <div class="search_container">
+            <div class="temp_containe">
+              <div>
                 <h1>{Math.round(backend.weather)} </h1>
                 <h3 class="main_container">{backend.main}</h3>
                 <h6> {backend.description}</h6>
                 <p>{backendDate.date}</p>
               </div>
-            }
+            </div>
+            <div class="line"></div>
+            <div class="more_containe">
+              <div>
+                <p>
+                  <span>
+                    Min Temperature <i class="bi bi-caret-right-fill"></i>
+                  </span>
+                  {backend.min_t}
+                </p>
+                <p>
+                  <span>
+                    Pressure <i class="bi bi-caret-right-fill"></i>
+                  </span>
+                  {backend.pressure}
+                </p>
+              </div>
+              <div>
+                <p>
+                  <span>
+                    Max Temperature <i class="bi bi-caret-right-fill"></i>
+                  </span>
+                  {backend.max_t}
+                </p>
+                <p>
+                  <span>
+                    Humidity <i class="bi bi-caret-right-fill"></i>
+                  </span>
+                  {backend.humidity}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
