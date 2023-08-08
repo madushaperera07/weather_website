@@ -31,6 +31,10 @@ app.post("/api", cors(), async (req, res) => {
         country: data.country,
         city: data.city,
         icon: data.icon,
+        max_t: data.max_t,
+        min_t: data.min_t,
+        pressure: data.pressure,
+        humidity: data.humidity,
       });
     })
     .catch((err) => {

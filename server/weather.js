@@ -15,6 +15,10 @@ const Weather = (lat, lon, country, city) => {
           country: country,
           city: city,
           icon: res.data.weather[0].icon,
+          max_t: res.data.main.temp_max,
+          min_t: res.data.main.temp_min,
+          pressure: res.data.main.pressure,
+          humidity: res.data.main.humidity,
         });
       })
       .catch((err) => {
